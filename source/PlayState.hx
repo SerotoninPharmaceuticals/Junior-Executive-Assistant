@@ -188,7 +188,7 @@ class PlayState extends FlxState
 
 			textKpi.text = MiniConsole.floatToStr(logic.state.kpi);
 
-			textIncome.text = "$" + MiniConsole.floatToStr(ConsistData.getData().data.save.balance - preState.balance);
+			textIncome.text = "$" + MiniConsole.floatToStr(logic.state.kpi * 27.0);
 			textBalance.text = "$" + MiniConsole.floatToStr(ConsistData.getData().data.save.balance);
 
 			remove(receiptPrinting);
@@ -404,7 +404,18 @@ class PlayState extends FlxState
 	{
 		super.update();
 
-		Mouse.cursor = MouseCursor.ARROW;
+		if(!isDocumentMode && !gameOver && (
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentA) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentAM) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentB) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentC) ||
+				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonLeft) && logic.state.leftButtonAddtion != "broken") ||
+				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight) && logic.state.rightButtonAddtion != "broken")
+				)) {
+			Mouse.cursor = MouseCursor.BUTTON;
+		} else {
+			Mouse.cursor = MouseCursor.ARROW;
+		}
 		if(gameOver) {
 			return;
 		}
@@ -523,18 +534,6 @@ class PlayState extends FlxState
 			}
 			if(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight)) {
 				rightButtonPress();
-			}
-		}
-		if(!isDocumentMode) {
-			if ((
-				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentA) ||
-				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentAM) ||
-				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentB) ||
-				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentC) ||
-				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonLeft) && logic.state.leftButtonAddtion != "broken") ||
-				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight) && logic.state.rightButtonAddtion != "broken")
-				)) {
-				Mouse.cursor = MouseCursor.BUTTON;
 			}
 		}
 
