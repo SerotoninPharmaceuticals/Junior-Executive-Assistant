@@ -464,7 +464,7 @@ class PlayState extends FlxState
 			if(tickSound != null) {
 				tickSound.pause();
 				FlxG.sound.play("assets/sounds/day-off.wav", 1);
-				if(logic.state.storyLevel != 10) {
+				if(preState.storyLevel != 10) {
 					haxe.Timer.delay(function() {
 						FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
 					}, 4000);
