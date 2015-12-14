@@ -62,8 +62,8 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		// if(ConsistData.getData().data.save == null) {
-		if(true) {
+		if(ConsistData.getData().data.save == null) {
+		// if(true) {
 			ConsistData.getData().data.save = GameLogic.brandNewDay();
 		}
 		logic = new GameLogic(Reflect.copy( ConsistData.getData().data.save));

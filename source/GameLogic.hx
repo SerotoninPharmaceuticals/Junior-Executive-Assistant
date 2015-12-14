@@ -378,32 +378,32 @@ class GameLogic {
 	static public function brandNewDay():GameState {
 
 		// The ending
-		return {
-			day: 21 - 1,
-			beginDay: new Date(2099, 9, 18, 12, 22, 33),
-			lightState: "off",
-			kpi: 0,
-			lastKpi: 10,
-			storyLevel: 10,
-			balance: -100,
-		 reached2: true,
+		// return {
+		// 	day: 21 - 1,
+		// 	beginDay: new Date(2099, 9, 18, 12, 22, 33),
+		// 	lightState: "off",
+		// 	kpi: 0,
+		// 	lastKpi: 10,
+		// 	storyLevel: 10,
+		// 	balance: -100,
+		//  reached2: true,
 
-			dayEnded: false,
+		// 	dayEnded: false,
 
-			message: "Welcome, homie",
-			motto: mottos[Std.random(mottos.length)],
+		// 	message: "Welcome, homie",
+		// 	motto: mottos[Std.random(mottos.length)],
 
-			documentA: "modified",
-			documentB: "printed",
-			documentC: "printed",
+		// 	documentA: "modified",
+		// 	documentB: "printed",
+		// 	documentC: "printed",
 
 
-			leftButtonAddtion: "broken",
-			rightButtonAddtion: "broken",
-			screenAddtion: "broken",
+		// 	leftButtonAddtion: "broken",
+		// 	rightButtonAddtion: "broken",
+		// 	screenAddtion: "broken",
 
-			answerMode: "single"
-		};
+		// 	answerMode: "single"
+		// };
 
 		// Clean one
 		return {
