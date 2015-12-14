@@ -413,7 +413,7 @@ class GameLogic {
 			kpi: 0,
 			lastKpi: 10,
 			storyLevel: 0,
-			balance: -250,
+			balance: -500,
 			reached2: false,
 
 			dayEnded: false,
