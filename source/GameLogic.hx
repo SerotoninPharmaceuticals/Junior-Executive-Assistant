@@ -47,7 +47,7 @@ class GameLogic {
 			state.storyLevel = 6;
 			state.message = "Please do precisely as what your employee manual says. There will be no more warning.";
 		}
-		if(state.storyLevel == 4 && state.kpi != 0) {
+		if(state.storyLevel == 4 && state.lastKpi != 0) {
 			state.storyLevel = 5;
 			state.message = "Do never press the right button!";
 		}
@@ -83,9 +83,11 @@ class GameLogic {
 					
 				}, function() {
 					isStory1Messed = true;
+					var lastIsGreen = false;
 					function story1messed() {
-						state.lightState = FlxRandom.float() > 0.5 ? "green" : "red";
-						addTask("story1messed", FlxRandom.float() / 20, function () {
+						state.lightState = lastIsGreen ? "green" : "red";
+						lastIsGreen = !lastIsGreen;
+						addTask("story1messed", 0.3, function () {
 							story1messed();
 						});
 					}
@@ -97,16 +99,16 @@ class GameLogic {
 			});
 		case 2:
 			trace("level 2 begin");
+			state.lightState = "red";
 			addTask("delayed-end", 0.5, function(){
 				state.dayEnded = true;
-				state.lightState = "red";
 			});
 		case 3:
 			trace("level 3 begin");
+			state.lightState = "red";
 			state.documentB = "printed";
 			addTask("delayed-end", 0.5, function(){
 				state.dayEnded = true;
-				state.lightState = "red";
 			});
 		case 4:
 			trace("level 4 begin");
@@ -292,6 +294,11 @@ class GameLogic {
 	private var lastMachineMessage = "";
 	public function machine(Input: String):Void {
 		lastMachineMessage = Input;
+		if(isStory1Messed) {
+			removeTask("story1messed");
+			state.lightState = "red";
+			state.dayEnded = true;
+		}
 		if(isTesting) {
 			if(state.leftButtonAddtion == "broken" && Input == "left-button"){
 				return;
@@ -313,11 +320,6 @@ class GameLogic {
 					state.lightState = "red";
 				}
 			}
-		}
-		if(isStory1Messed) {
-			removeTask("story1messed");
-			state.lightState = "red";
-			state.dayEnded = true;
 		}
 	}
 

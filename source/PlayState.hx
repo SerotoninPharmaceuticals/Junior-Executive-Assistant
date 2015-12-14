@@ -59,8 +59,8 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		// if(ConsistData.getData().data.save == null) {
-		if(true) {
+		if(ConsistData.getData().data.save == null) {
+		// if(true) {
 			ConsistData.getData().data.save = GameLogic.brandNewDay();
 		}
 		logic = new GameLogic(Reflect.copy( ConsistData.getData().data.save));
@@ -142,16 +142,16 @@ class PlayState extends FlxState
 		receipt = new FlxButton(0, 0, "");
 		receipt.loadGraphic("assets/images/receipt.png");
 		receipt.x = 800;
-		receipt.y = 10;
+		receipt.y = 9;
 		var textDate = new FlxText();
-		textDate.setFormat("assets/fonts/GOTHIC.TTF", 8, 0xff000000);
+		textDate.setFormat("assets/fonts/GOTHIC.TTF", 7, 0xff000000);
 		textDate.x = 827;
-		textDate.y = 50;
+		textDate.y = 51;
 		receiptGroup.add(textDate);
 		var textKpi = new FlxText();
 		textKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textKpi.x = 890;
-		textKpi.y = 90;
+		textKpi.y = 91;
 		receiptGroup.add(textKpi);
 		var textIncome = new FlxText();
 		textIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
@@ -161,7 +161,7 @@ class PlayState extends FlxState
 		var textBalance = new FlxText();
 		textBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textBalance.x = 890;
-		textBalance.y = 116;
+		textBalance.y = 115;
 		receiptGroup.add(textBalance);
 		receiptGroup.add(receipt);
 
@@ -171,8 +171,8 @@ class PlayState extends FlxState
 
 			textKpi.text = MiniConsole.floatToStr(logic.state.kpi);
 
-			textIncome.text = MiniConsole.floatToStr(ConsistData.getData().data.save.balance - preState.balance);
-			textBalance.text = MiniConsole.floatToStr(ConsistData.getData().data.save.balance);
+			textIncome.text = "$" + MiniConsole.floatToStr(ConsistData.getData().data.save.balance - preState.balance);
+			textBalance.text = "$" + MiniConsole.floatToStr(ConsistData.getData().data.save.balance);
 
 			remove(receiptPrinting);
 			receiptGroup.sort(FlxSort.byY, FlxSort.ASCENDING);
@@ -393,7 +393,9 @@ class PlayState extends FlxState
 				tickSound.pause();
 				FlxG.sound.play("assets/sounds/day-off.wav", 1);
 				if(logic.state.storyLevel != 10) {
-					FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+					haxe.Timer.delay(function() {
+						FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+					}, 4000);
 				}
 			}
 		}
@@ -551,6 +553,7 @@ class PlayState extends FlxState
 		}
 
 		printingSound = FlxG.sound.play("assets/sounds/printing.wav", 0.3);
+		console.open();
 	}
 
 	private function endPrinting():Void {

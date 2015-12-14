@@ -37,6 +37,7 @@ class MiniConsole extends FlxSpriteGroup {
 		textMotto.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textMotto);
 		textMotto.drive();
+		textMotto.timeScape = 200;
 	}
 
 	public function open(): Void {
