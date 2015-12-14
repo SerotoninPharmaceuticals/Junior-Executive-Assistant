@@ -194,6 +194,7 @@ class PlayState extends FlxState
 			remove(receiptPrinting);
 			receiptGroup.sort(FlxSort.byY, FlxSort.ASCENDING);
 			add(receiptGroup);
+			Mouse.cursor = MouseCursor.ARROW;
 		};
 
 
@@ -210,7 +211,7 @@ class PlayState extends FlxState
 
 		// 
 		documentPrinting = new FlxButton(0, 0, "");
-		documentPrinting.loadGraphic("assets/images/document-printing-1.png");
+		// documentPrinting.loadGraphic("assets/images/document-printing-1.png");
 		add(documentPrinting);
 		documentPrinting.x = 708;
 		documentPrinting.y = -1000;
@@ -318,7 +319,7 @@ class PlayState extends FlxState
 	private var leftPressTimer:Timer;
 	private var leftPressing = false;
 	public function leftButtonPress():Void {
-		if(isDocumentMode) {
+		if(isViewingDocumentLarge) {
 			return;
 		}
 		leftPressing = true;
@@ -355,7 +356,7 @@ class PlayState extends FlxState
 	}
 	private var rightPressing = false;
 	public function rightButtonPress():Void {
-		if(isDocumentMode) {
+		if(isViewingDocumentLarge) {
 			return;
 		}
 		rightPressing = true;
@@ -404,7 +405,7 @@ class PlayState extends FlxState
 	{
 		super.update();
 
-		if(!isDocumentMode && !gameOver && (
+		if(!isViewingDocumentLarge && !gameOver && (
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentA) ||
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentAM) ||
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentB) ||
