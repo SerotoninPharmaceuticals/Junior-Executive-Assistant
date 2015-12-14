@@ -17,6 +17,8 @@ import flixel.util.FlxCollision;
 import flixel.tweens.FlxTween;
 import flixel.group.FlxTypedGroup;
 import flixel.util.FlxSort;
+import flash.ui.MouseCursor;
+import flash.ui.Mouse;
 
 class PlayState extends FlxState
 {
@@ -60,8 +62,8 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		if(ConsistData.getData().data.save == null) {
-		// if(true) {
+		// if(ConsistData.getData().data.save == null) {
+		if(true) {
 			ConsistData.getData().data.save = GameLogic.brandNewDay();
 		}
 		logic = new GameLogic(Reflect.copy( ConsistData.getData().data.save));
@@ -105,6 +107,13 @@ class PlayState extends FlxState
 			add(brokenConsole);
 			brokenConsole.x = (1080 / 2) - (brokenConsole.width / 2);
 			brokenConsole.y = 11;
+		}
+
+
+		if (logic.state.leftButtonAddtion == "fake") {
+			var fakeButton = new FlxSprite(657, 65, "assets/images/painted-button.png");
+			fakeButton.loadGraphic("assets/images/painted-button.png");
+			add(fakeButton);
 		}
 
 		lightHalo = new FlxSprite();
@@ -269,6 +278,7 @@ class PlayState extends FlxState
 			if(isPrinting || documentPrinting.alpha != 0) {
 				return;
 			}
+			FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
 			viewDocument("assets/images/document-3.png", function(){});
 		};
 
@@ -394,6 +404,7 @@ class PlayState extends FlxState
 	{
 		super.update();
 
+		Mouse.cursor = MouseCursor.ARROW;
 		if(gameOver) {
 			return;
 		}
@@ -512,6 +523,18 @@ class PlayState extends FlxState
 			}
 			if(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight)) {
 				rightButtonPress();
+			}
+		}
+		if(!isDocumentMode) {
+			if ((
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentA) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentAM) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentB) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentC) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonLeft) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight)
+				)) {
+				Mouse.cursor = MouseCursor.BUTTON;
 			}
 		}
 

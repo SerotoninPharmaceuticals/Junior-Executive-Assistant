@@ -376,6 +376,36 @@ class GameLogic {
 	}
 
 	static public function brandNewDay():GameState {
+
+		// The ending
+		return {
+			day: 21 - 1,
+			beginDay: new Date(2099, 9, 18, 12, 22, 33),
+			lightState: "off",
+			kpi: 0,
+			lastKpi: 10,
+			storyLevel: 10,
+			balance: -100,
+		 reached2: true,
+
+			dayEnded: false,
+
+			message: "Welcome, homie",
+			motto: mottos[Std.random(mottos.length)],
+
+			documentA: "modified",
+			documentB: "printed",
+			documentC: "printed",
+
+
+			leftButtonAddtion: "broken",
+			rightButtonAddtion: "broken",
+			screenAddtion: "broken",
+
+			answerMode: "single"
+		};
+
+		// Clean one
 		return {
 			day: 1 - 1,
 			beginDay: new Date(2099, 9, 18, 12, 22, 33),
@@ -403,32 +433,6 @@ class GameLogic {
 			answerMode: "both"
 		};
 
-		// return {
-		// 	day: 21 - 1,
-		// 	beginDay: new Date(2099, 9, 18, 12, 22, 33),
-		// 	lightState: "off",
-		// 	kpi: 0,
-		// 	lastKpi: 10,
-		// 	storyLevel: 10,
-		// 	balance: -100,
-		//  reached2: true,
-
-		// 	dayEnded: false,
-
-		// 	message: "Welcome, homie",
-		// 	motto: mottos[Std.random(mottos.length)],
-
-		// 	documentA: "modified",
-		// 	documentB: "printed",
-		// 	documentC: "printed",
-
-
-		// 	leftButtonAddtion: "broken",
-		// 	rightButtonAddtion: "broken",
-		// 	screenAddtion: "broken",
-
-		// 	answerMode: "single"
-		// };
 	}
 
 	private static var mottos = [
