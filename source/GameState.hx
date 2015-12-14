@@ -8,6 +8,7 @@ typedef GameState = {
 
 	var kpi: Float;
 	var lastKpi: Float;
+	var reached2: Bool;
 
 	var storyLevel: Int;
 

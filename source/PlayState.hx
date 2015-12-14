@@ -55,6 +55,7 @@ class PlayState extends FlxState
 	private var receiptPrinting: FlxButton;
 	private var receipt: FlxSprite;
 
+	private var gameOver = false;
 	override public function create():Void
 	{
 		super.create();
@@ -80,7 +81,7 @@ class PlayState extends FlxState
 		}
 		if (logic.state.leftButtonAddtion == "fake") {
 			leftButtonUpImage = "assets/images/button-fake.png";
-			leftButtonDownImage = "assets/images/button-fake.png";
+			leftButtonDownImage = "assets/images/button-fake-pressed.png";
 		}
 
 
@@ -297,7 +298,9 @@ class PlayState extends FlxState
 		}
 		logic.beginWorkCallback = function(){
 			tickSound = FlxG.sound.play("assets/sounds/clock-tick.wav", 1, true);
-			console.open();
+			if(console != null) {
+				console.open();
+			}
 		}
 
 	}
@@ -335,6 +338,10 @@ class PlayState extends FlxState
 			leftPressTimer.stop();
 			leftPressTimer = null;
 		}
+		if(logic.state.leftButtonAddtion == "fake") {
+			doGameOver();
+			buttonLeft.onDown.callback = null;
+		}
 	}
 	private var rightPressing = false;
 	public function rightButtonPress():Void {
@@ -359,12 +366,38 @@ class PlayState extends FlxState
 		buttonRight.loadGraphic(rightButtonUpImage);
 	}
 
+	private function doGameOver():Void {
+		remove(buttonLeft);
+		remove(buttonRight);
+		remove(smallDocumentA);
+		remove(smallDocumentAM);
+		remove(smallDocumentC);
+		remove(smallDocumentB);
+		gameOver = true;
+
+		var creditBackground = new FlxSprite();
+		creditBackground.makeGraphic(1080, 160, 0xff000000);
+		add(creditBackground);
+
+		var credit = new FlxSprite();
+		credit.loadGraphic("assets/images/ending.png");
+		credit.x = 540 - credit.width / 2;
+		credit.y = 80 - credit.height / 2;
+		add(credit);
+		ConsistData.getData().data.save = GameLogic.brandNewDay();
+	}
+
 	private var isDocumentMode = false;
 	private var preState: GameState;
 	private var wallDocuments: GameState;
 	override public function update():Void
 	{
 		super.update();
+
+		if(gameOver) {
+			return;
+		}
+
 		if(!isDocumentMode) {
 			logic.update(FlxG.elapsed);
 		}
@@ -568,7 +601,9 @@ class PlayState extends FlxState
 		}
 
 		printingSound = FlxG.sound.play("assets/sounds/printing.wav", 0.3);
-		console.open();
+		if( logic.state.storyLevel != 3) {
+			console.open();
+		}
 	}
 
 	private function endPrinting():Void {

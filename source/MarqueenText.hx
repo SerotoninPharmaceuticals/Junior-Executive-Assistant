@@ -30,10 +30,10 @@ class MarqueenText extends FlxText {
 	private function displayText():Void {
 		this.text = "";
 		for (cursor in 0 ... length) {
-			if ((cursor - charOffset) % (fullText.length + 1) == 0) {
-				this.text += " ";
+			if ((cursor - charOffset) % (fullText.length + 5) == 0) {
+				this.text += " --- ";
 			} else {
-				this.text += fullText.charAt((cursor - charOffset) % (fullText.length + 1) - 1);
+				this.text += fullText.charAt((cursor - charOffset) % (fullText.length + 5) - 1);
 			}
 		}
 	}

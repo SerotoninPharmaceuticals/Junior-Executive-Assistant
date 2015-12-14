@@ -87,7 +87,7 @@ class GameLogic {
 					function story1messed() {
 						state.lightState = lastIsGreen ? "green" : "red";
 						lastIsGreen = !lastIsGreen;
-						addTask("story1messed", 0.3, function () {
+						addTask("story1messed", 0.2, function () {
 							story1messed();
 						});
 					}
@@ -155,8 +155,11 @@ class GameLogic {
 				}, function() {
 					state.dayEnded = true;
 					state.lightState = "red";
-					if (state.lastKpi > 2 && state.kpi > 2) {
+					if (state.reached2 && state.kpi > 2) {
 						state.storyLevel = 8;
+					}
+					if(state.kpi > 2) {
+						state.reached2 = true;
 					}
 				});
 			});
@@ -200,7 +203,8 @@ class GameLogic {
 			kpi: state.kpi,
 			lastKpi: state.kpi,
 			storyLevel: state.storyLevel,
-			balance: state.balance - 18 - Std.random(20) + 27 * state.kpi,
+			balance: state.balance - 18.0 - Std.random(20) + 27.0 * state.kpi,
+			reached2: state.reached2,
 
 			dayEnded: false,
 
@@ -379,7 +383,8 @@ class GameLogic {
 			kpi: 0,
 			lastKpi: 10,
 			storyLevel: 0,
-			balance: -100,
+			balance: -250,
+			reached2: false,
 
 			dayEnded: false,
 
@@ -397,6 +402,33 @@ class GameLogic {
 
 			answerMode: "both"
 		};
+
+		// return {
+		// 	day: 21 - 1,
+		// 	beginDay: new Date(2099, 9, 18, 12, 22, 33),
+		// 	lightState: "off",
+		// 	kpi: 0,
+		// 	lastKpi: 10,
+		// 	storyLevel: 10,
+		// 	balance: -100,
+		//  reached2: true,
+
+		// 	dayEnded: false,
+
+		// 	message: "Welcome, homie",
+		// 	motto: mottos[Std.random(mottos.length)],
+
+		// 	documentA: "modified",
+		// 	documentB: "printed",
+		// 	documentC: "printed",
+
+
+		// 	leftButtonAddtion: "broken",
+		// 	rightButtonAddtion: "broken",
+		// 	screenAddtion: "broken",
+
+		// 	answerMode: "single"
+		// };
 	}
 
 	private static var mottos = [
@@ -414,7 +446,7 @@ class GameLogic {
 		"Do not let what you cannot do interfere with what you can do.",
 		"Life is 10% what happens to us and 90% how we react to it.",
 		"By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day",
-		"When I hear somebody sigh, ‘Life is hard,’ I am always tempted to ask, ‘Compared to what? ",
+		"When I hear somebody sigh, \"Life is hard,\" I am always tempted to ask, \"Compared to what?\" ",
 		"Do first things first, and second things not at all.",
 		"Success seems to be connected with action. Successful people keep moving. They make mistakes but don’t quit.",
 		"Where the willingness is great, the difficulties cannot be great."

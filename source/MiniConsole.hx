@@ -31,6 +31,7 @@ class MiniConsole extends FlxSpriteGroup {
 		add(textMessage);
 		textMessage.drive();
 		textMessage.alpha = 0;
+		textMessage.timeScape = 320;
 
 		// Motto field
 		textMotto = new MarqueenText(0, 46, 17, "How's the weather?", 14, true);
