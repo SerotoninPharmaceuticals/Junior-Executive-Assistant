@@ -409,6 +409,8 @@ class PlayState extends FlxState
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentAM) ||
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentB) ||
 				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), smallDocumentC) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), receiptPrinting) ||
+				FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), documentPrinting) ||
 				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonLeft) && logic.state.leftButtonAddtion != "broken") ||
 				(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight) && logic.state.rightButtonAddtion != "broken")
 				)) {
