@@ -436,37 +436,37 @@ class GameLogic {
 	}
 
 	private static var mottos = [
-		"You can if you think you can.",
-		"The greatest oak was once a little nut who held its ground. ",
-		"Think big thoughts, but relish small pleasures. ",
-		"Hope sees the invisible, feels the intangible and achieves the impossible.",
-		"I take nothing for granted. I now have only good days, or great days.",
-		"I long to accomplish a great and noble task, but it is my chief duty to accomplish humble tasks as though they were great and noble. The world is moved along not only by the mighty shoves of its heroes but also by the aggregate of the tiny pushes of each honest worker. ",
-		"It doesn't matter who you are, where you come from. The ability to triumph begins with you. Always.",
-		"Trust yourself. You know more than you think you do.",
-		"No one knows what they can do until they try.",
-		"What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-		"The best way to predict the future is to create it.",
-		"Do not let what you cannot do interfere with what you can do.",
-		"Life is 10% what happens to us and 90% how we react to it.",
+		"You can if you think you can",
+		"The greatest oak was once a little nut who held its ground",
+		"Think big thoughts, but relish small pleasures",
+		"Hope sees the invisible, feels the intangible and achieves the impossible",
+		"I take nothing for granted. I now have only good days, or great days",
+		"I long to accomplish a great and noble task, but it is my chief duty to accomplish humble tasks as though they were great and noble. The world is moved along not only by the mighty shoves of its heroes but also by the aggregate of the tiny pushes of each honest worker",
+		"It doesn't matter who you are, where you come from. The ability to triumph begins with you. Always",
+		"Trust yourself. You know more than you think you do",
+		"No one knows what they can do until they try",
+		"What lies behind us and what lies before us are tiny matters compared to what lies within us",
+		"The best way to predict the future is to create it",
+		"Do not let what you cannot do interfere with what you can do",
+		"Life is 10% what happens to us and 90% how we react to it",
 		"By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day",
 		"When I hear somebody sigh, \"Life is hard,\" I am always tempted to ask, \"Compared to what?\" ",
-		"Do first things first, and second things not at all.",
-		"Success seems to be connected with action. Successful people keep moving. They make mistakes but don’t quit.",
+		"Do first things first, and second things not at all",
+		"Success seems to be connected with action. Successful people keep moving. They make mistakes but don’t quit",
 		"Where the willingness is great, the difficulties cannot be great."
 	];
 
 	private static var level1Pool = [
 		"Welcome, new employee #3267, your bright future awaits here",
-		"You are doing great, keep it up.",
-		"You did a decent job, not perfect, but good enough.",
+		"You are doing great, keep it up",
+		"You did a decent job, not perfect, but good enough",
 		"You still have some room for improvement. Try harder."
 	];
 	private static var level4Day9 = "Welcome back to work, everything is fine now and we missed you.";
 	private static var level4Pool = [
 		"Work hard, hard worker!",
-		"You should hurry up now, the deadline is due.",
-		"We wasted few days already, please do not waste more.",
+		"You should hurry up now, the deadline is due",
+		"We wasted few days already, please do not waste more",
 		"We must catch up with the schedule"
 	];
 }

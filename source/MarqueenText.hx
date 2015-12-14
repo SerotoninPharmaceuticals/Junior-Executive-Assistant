@@ -29,11 +29,12 @@ class MarqueenText extends FlxText {
 	}
 	private function displayText():Void {
 		this.text = "";
+		var newText = fullText + " ---";
 		for (cursor in 0 ... length) {
-			if ((cursor - charOffset) % (fullText.length + 5) == 0) {
-				this.text += " --- ";
+			if ((cursor - charOffset) % (newText.length + 1) == 0) {
+				this.text += " ";
 			} else {
-				this.text += fullText.charAt((cursor - charOffset) % (fullText.length + 5) - 1);
+				this.text += newText.charAt((cursor - charOffset) % (newText.length + 1) - 1);
 			}
 		}
 	}
