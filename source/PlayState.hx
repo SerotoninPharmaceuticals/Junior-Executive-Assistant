@@ -12,6 +12,11 @@ import flash.display.BlendMode;
 import GameLogic;
 import flixel.util.FlxSpriteUtil;
 import haxe.Timer;
+import flixel.system.FlxSound;
+import flixel.util.FlxCollision;
+import flixel.tweens.FlxTween;
+import flixel.group.FlxTypedGroup;
+import flixel.util.FlxSort;
 
 class PlayState extends FlxState
 {
@@ -44,12 +49,18 @@ class PlayState extends FlxState
 	private var rightButtonUpImage = "assets/images/button.png";
 	private var rightButtonDownImage = "assets/images/button-pressed.png";
 
+	private var tickSound: FlxSound;
+	private var printingSound: FlxSound;
+
+	private var receiptPrinting: FlxButton;
+	private var receipt: FlxSprite;
+
 	override public function create():Void
 	{
 		super.create();
 
-		if(ConsistData.getData().data.save == null) {
-		// if(true) {
+		// if(ConsistData.getData().data.save == null) {
+		if(true) {
 			ConsistData.getData().data.save = GameLogic.brandNewDay();
 		}
 		logic = new GameLogic(Reflect.copy( ConsistData.getData().data.save));
@@ -108,7 +119,7 @@ class PlayState extends FlxState
 		add(buttonLeft);
 		buttonLeft.x = 488;
 		buttonLeft.y = 84;
-		buttonLeft.onDown.callback = leftButtonPress;
+		// buttonLeft.onDown.callback = leftButtonPress;
 		buttonLeft.onUp.callback = leftButtonEnd;
 		buttonLeft.onOut.callback = leftButtonEnd;
 
@@ -117,9 +128,44 @@ class PlayState extends FlxState
 		add(buttonRight);
 		buttonRight.x = 568;
 		buttonRight.y = 84;
-		buttonRight.onDown.callback = rightButtonPress;
+		// buttonRight.onDown.callback = rightButtonPress;
 		buttonRight.onUp.callback = rightButtonEnd;
 		buttonRight.onOut.callback = rightButtonEnd;
+
+		receiptPrinting = new FlxButton(0, 0, "");
+		receiptPrinting.loadGraphic("assets/images/receipt-printing.png");
+		add(receiptPrinting);
+		receiptPrinting.x = 860;
+		receiptPrinting.y = -receiptPrinting.height;
+
+		var receiptGroup: FlxTypedGroup<FlxSprite> = new FlxTypedGroup();
+
+		receipt = new FlxButton(0, 0, "");
+		receipt.loadGraphic("assets/images/receipt.png");
+		receipt.x = 800;
+		receipt.y = 10;
+		var textDate = new FlxText();
+		textDate.setFormat("assets/fonts/GOTHIC.TTF", 8, 0xff000000);
+		textDate.text = "hahahdasdasdas";
+		textDate.x = 827;
+		textDate.y = 50;
+		receiptGroup.add(textDate);
+		var txtKpi = new FlxText();
+		txtKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		receiptGroup.add(txtKpi);
+		var txtIncome = new FlxText();
+		txtIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		receiptGroup.add(txtIncome);
+		var txtBalance = new FlxText();
+		txtBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		receiptGroup.add(txtBalance);
+		receiptGroup.add(receipt);
+
+		receiptPrinting.onDown.callback = function(){
+			remove(receiptPrinting);
+			receiptGroup.sort(FlxSort.byY, FlxSort.ASCENDING);
+			add(receiptGroup);
+		};
 
 
 		// Document printing
@@ -153,10 +199,15 @@ class PlayState extends FlxState
 		// smallDocumentA.y = 34;
 		smallDocumentA.y = 160;
 		smallDocumentA.onDown.callback = function(){
-			if(isPrinting || documentPrinting.alpha != 0) {
+			if(isViewingDocumentLarge || isPrinting || documentPrinting.alpha != 0) {
 				return;
 			}
-			viewDocument("assets/images/document-1.png", function(){});
+			FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
+			if(logic.state.documentA == "modified") {
+				viewDocument("assets/images/document-1-modified.png", function(){});
+			} else {
+				viewDocument("assets/images/document-1.png", function(){});
+			}
 		};
 
 		smallDocumentAM = new FlxButton();
@@ -166,9 +217,10 @@ class PlayState extends FlxState
 		// smallDocumentAM.y = 34;
 		smallDocumentAM.y = 160;
 		smallDocumentAM.onDown.callback = function(){
-			if(isPrinting || documentPrinting.alpha != 0) {
+			if(isViewingDocumentLarge || isPrinting || documentPrinting.alpha != 0) {
 				return;
-			}
+				}
+			FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
 			viewDocument("assets/images/document-1.png", function(){});
 		};
 
@@ -180,9 +232,10 @@ class PlayState extends FlxState
 		// smallDocumentB.y = 28;
 		smallDocumentB.y = 160;
 		smallDocumentB.onDown.callback = function(){
-			if(isPrinting || documentPrinting.alpha != 0) {
+			if(isViewingDocumentLarge || isPrinting || documentPrinting.alpha != 0) {
 				return;
 			}
+			FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
 			viewDocument("assets/images/document-2.png", function(){});
 		};
 		// 
@@ -214,14 +267,30 @@ class PlayState extends FlxState
 		documentLarge.onOut.callback = documentLargeDrop;
 
 
+		// Sound
+		FlxG.sound.play("assets/sounds/ambient-humming.wav", 1, true);
+
+		logic.winCallback = function(){
+			FlxG.sound.play("assets/sounds/success.wav", 1);
+		}
+		logic.loseCallback = function(){
+			FlxG.sound.play("assets/sounds/lose.wav", 1);
+		}
+		logic.beginWorkCallback = function(){
+			tickSound = FlxG.sound.play("assets/sounds/clock-tick.wav", 1, true);
+		}
+
 	}
 
 	private var leftPressTimer:Timer;
+	private var leftPressing = false;
 	public function leftButtonPress():Void {
 		if(isDocumentMode) {
 			return;
 		}
+		leftPressing = true;
 		buttonLeft.loadGraphic(leftButtonDownImage);
+		FlxG.sound.play("assets/sounds/button-down.wav", 1);
 		if(logic.state.answerMode == "both") {
 			logic.machine("left-button");
 		} else {
@@ -231,6 +300,11 @@ class PlayState extends FlxState
 		}
 	}
 	public function leftButtonEnd():Void {
+		if(!leftPressing) {
+			return;
+		}
+		leftPressing = false;
+		FlxG.sound.play("assets/sounds/button-up.wav", 1);
 		buttonLeft.loadGraphic(leftButtonUpImage);
 		if(leftPressTimer != null) {
 			logic.machine("left-button");
@@ -238,14 +312,22 @@ class PlayState extends FlxState
 			leftPressTimer = null;
 		}
 	}
+	private var rightPressing = false;
 	public function rightButtonPress():Void {
 		if(isDocumentMode) {
 			return;
 		}
+		rightPressing = true;
 		logic.machine("right-button");
+		FlxG.sound.play("assets/sounds/button-down.wav", 1);
 		buttonRight.loadGraphic(rightButtonDownImage);
 	}
 	public function rightButtonEnd():Void {
+		if(!rightPressing) {
+			return;
+		}
+		rightPressing = false;
+		FlxG.sound.play("assets/sounds/button-up.wav", 1);
 		buttonRight.loadGraphic(rightButtonUpImage);
 	}
 
@@ -294,6 +376,13 @@ class PlayState extends FlxState
 				console.close();
 			}
 			ConsistData.getData().data.save = logic.makeSavable();
+			FlxG.sound.play("assets/sounds/day-off.wav", 1);
+			if(tickSound != null) {
+				tickSound.pause();
+			}
+			if(logic.state.storyLevel != 10) {
+				FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+			}
 		}
 
 		// Should print documentA
@@ -350,6 +439,16 @@ class PlayState extends FlxState
 				isDocumentMode = false;
 				printingEndCallback();
 				printingEndCallback = function(){};
+			}
+		}
+
+		// Mouse clicks
+		if(FlxG.mouse.justPressed) {
+			if(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonLeft)) {
+				leftButtonPress();
+			}
+			if(FlxCollision.pixelPerfectPointCheck(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), buttonRight)) {
+				rightButtonPress();
 			}
 		}
 
@@ -437,6 +536,8 @@ class PlayState extends FlxState
 		printingEndCallback = function() {
 			viewDocument(LargeImage, Callback);
 		}
+
+		printingSound = FlxG.sound.play("assets/sounds/printing.wav", 0.3);
 	}
 
 	private function endPrinting():Void {
@@ -452,6 +553,10 @@ class PlayState extends FlxState
 		documentPrinting.alpha = 0;
 		documentPrintingShadow.alpha = 0;
 		printingUpdateShadowAndDocument(-1000);
+		if(printingSound != null) {
+			printingSound.pause();
+		}
+		FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
 	}
 
 	private var isViewingDocumentLarge = false;

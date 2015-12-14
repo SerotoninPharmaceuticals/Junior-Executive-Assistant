@@ -4,6 +4,7 @@ typedef GameState = {
 	var day: Int;
 	var beginDay: Date;
 	var lightState: String;
+	var balance: Float;
 
 	var kpi: Float;
 	var lastKpi: Float;

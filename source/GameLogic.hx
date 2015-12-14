@@ -12,6 +12,14 @@ class GameLogic {
 	}
 
 	private var isStory1Messed = false;
+	public var beginWorkCallback: Void -> Void;
+	private function beginWork():Void {
+		addTask("begin-work", 0.3, function(){
+			if(beginWorkCallback != null) {
+				beginWorkCallback();
+			}
+		});
+	}
 	private function beginGame():Void {
 		trace("You're in day " + state.day);
 		if(state.day == 4) {
@@ -27,20 +35,38 @@ class GameLogic {
 			state.storyLevel = 4;
 		}
 
+		if (state.storyLevel == 7) {
+			state.message = level4Pool[Std.random(level4Pool.length)];
+		}
 
 		if(state.storyLevel == 6) {
 			state.storyLevel = 7;
+			state.message = "You assignment has been updated, check the new printed document.";
 		}
 		if(state.storyLevel == 5) {
 			state.storyLevel = 6;
+			state.message = "Please do precisely as what your employee manual says. There will be no more warning.";
 		}
 		if(state.storyLevel == 4 && state.kpi != 0) {
 			state.storyLevel = 5;
+			state.message = "Do never press the right button!";
 		}
+
+		if(state.day <= 4) {
+			state.message = level1Pool[state.day - 1];
+		}
+		if(state.storyLevel == 4) {
+			state.message = level4Pool[Std.random(level4Pool.length)];
+			if (state.day == 9) {
+				state.message = level4Day9;
+			}
+		}
+
 		switch (state.storyLevel) {
 		case 0:
 			trace("level 0 begin");
 			state.documentA = "printed";
+			beginWork();
 			addTask("story-0", 6, function(){
 				testBlock(8 + Std.random(3), function() {
 					
@@ -51,6 +77,7 @@ class GameLogic {
 			});
 		case 1:
 			trace("level 1 begin");
+			beginWork();
 			addTask("story-1", 4, function(){
 				testBlock(4 + Std.random(2), function() {
 					
@@ -70,16 +97,21 @@ class GameLogic {
 			});
 		case 2:
 			trace("level 2 begin");
-			state.dayEnded = true;
-			state.lightState = "red";
+			addTask("delayed-end", 0.5, function(){
+				state.dayEnded = true;
+				state.lightState = "red";
+			});
 		case 3:
 			trace("level 3 begin");
 			state.documentB = "printed";
-			state.dayEnded = true;
-			state.lightState = "red";
+			addTask("delayed-end", 0.5, function(){
+				state.dayEnded = true;
+				state.lightState = "red";
+			});
 		case 4:
 			trace("level 4 begin");
 			state.documentA = "modified";
+			beginWork();
 			addTask("story-4", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 					
@@ -90,6 +122,7 @@ class GameLogic {
 			});
 		case 5:
 			trace("level 5 begin");
+			beginWork();
 			addTask("story-5", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 				}, function() {
@@ -100,6 +133,7 @@ class GameLogic {
 		case 6:
 			trace("level 6 begin");
 			state.rightButtonAddtion = "broken";
+			beginWork();
 			addTask("story-6", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 					
@@ -112,6 +146,7 @@ class GameLogic {
 			trace("level 7 begin");
 			state.answerMode = "single";
 			state.documentC = "printed";
+			beginWork();
 			addTask("story-7", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 					
@@ -126,6 +161,7 @@ class GameLogic {
 		case 8:
 			trace("level 8 begin");
 			state.leftButtonAddtion = "broken";
+			beginWork();
 			addTask("story-8", 6, function(){
 				testBlock(8 + Std.random(3), function() {
 					
@@ -138,7 +174,15 @@ class GameLogic {
 		case 9:
 			trace("level 9 begin");
 			state.screenAddtion = "broken";
-			state.dayEnded = true;
+			beginWork();
+			addTask("story-9", 6, function(){
+				testBlock(8 + Std.random(3), function() {
+					
+				}, function() {
+					state.dayEnded = true;
+					state.lightState = "red";
+				});
+			});
 			state.storyLevel = 10;
 		case 10:
 			trace("level 10 begin");
@@ -154,6 +198,7 @@ class GameLogic {
 			kpi: state.kpi,
 			lastKpi: state.kpi,
 			storyLevel: state.storyLevel,
+			balance: state.balance - 18 - Std.random(20) + 27 * state.kpi,
 
 			dayEnded: false,
 
@@ -197,10 +242,13 @@ class GameLogic {
 		removeTask("testend");
 		lightBlink(0);
 		for (i in 0 ... Times) {
-			addTask("test", i * 4, function(){
-				if(isTesting) {
-					lose();
-				}
+			addTask("test", i * 5, function(){
+				addTask("test-end", 4, function(){
+					if(isTesting) {
+						lose();
+					}
+					isTesting = false;
+				});
 				isTesting = true;
 				testLeftIsRight = Std.random(100) > 50 ? true : false;
 				if (testLeftIsRight) {
@@ -211,25 +259,33 @@ class GameLogic {
 				EachCall();
 			});
 		}
-		addTask("testend", Times * 4, function () {
+		addTask("testend", Times * 5, function () {
 			isTesting = false;
 			trace("End test");
 			FinalCall();
 		});
 	}
 
+	public var winCallback: Void -> Void;
 	private function win():Void {
 		state.kpi += 0.8;
 
 		trace("WIN");
+		if(winCallback != null) {
+			winCallback();
+		}
 	}
 
+	public var loseCallback: Void -> Void;
 	private function lose():Void {
 		state.kpi -= 1.2;
 
 		trace("LOSE");
 		if (state.kpi <0) {
 			state.kpi = 0;
+		}
+		if(loseCallback != null) {
+			loseCallback();
 		}
 	}
 
@@ -320,7 +376,8 @@ class GameLogic {
 			lightState: "off",
 			kpi: 0,
 			lastKpi: 10,
-			storyLevel: 0,
+			storyLevel: 2,
+			balance: -100,
 
 			dayEnded: false,
 
@@ -359,6 +416,20 @@ class GameLogic {
 		"Do first things first, and second things not at all.",
 		"Success seems to be connected with action. Successful people keep moving. They make mistakes but don’t quit.",
 		"Where the willingness is great, the difficulties cannot be great."
+	];
+
+	private static var level1Pool = [
+		"Welcome, new employee #3267, your bright future awaits here",
+		"You are doing great, keep it up.",
+		"You did a decent job, not perfect, but good enough.",
+		"You still have some room for improvement. Try harder."
+	];
+	private static var level4Day9 = "Welcome back to work, everything is fine now and we missed you.";
+	private static var level4Pool = [
+		"Work hard, hard worker!",
+		"You should hurry up now, the deadline is due.",
+		"We wasted few days already, please do not waste more.",
+		"We must catch up with the schedule"
 	];
 }
 

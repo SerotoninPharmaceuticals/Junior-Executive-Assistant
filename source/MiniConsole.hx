@@ -68,18 +68,18 @@ class MiniConsole extends FlxSpriteGroup {
 	}
 
 	static private var monthDict = [
-		"Jan",
-		"Feb",
-		"Mar",
-		"Apr",
-		"May",
-		"Jun",
-		"Jul",
-		"Aug",
-		"Sep",
-		"Oct",
-		"Nov",
-		"Dec"
+		"Jan.",
+		"Feb.",
+		"Mar.",
+		"Apr.",
+		"May.",
+		"Jun.",
+		"Jul.",
+		"Aug.",
+		"Sep.",
+		"Oct.",
+		"Nov.",
+		"Dec."
 	];
 
 }
