@@ -51,9 +51,14 @@ class MiniConsole extends FlxSpriteGroup {
 		// textMotto.alpha = 0;
 	}
 
-	public function updateText(NewDate: Date, Message: String, Motto: String, Kpi: Int):Void {
+	public function updateText(NewDate: Date, Message: String, Motto: String, Kpi: Float):Void {
 		textDate.text = Std.string(NewDate.getDate()) + " " + monthDict[NewDate.getMonth()];
-		textKpi.text = "KPI: " + Std.string(Kpi);
+		var kpiStr = Std.string(Kpi);
+		if(kpiStr.indexOf('.')  != -1) {
+			textKpi.text = "KPI:" + kpiStr.substr(0, kpiStr.indexOf('.') + 2);
+		} else {
+			textKpi.text = "KPI:" + kpiStr + ".0";
+		}
 		if(textMessage.fullText != Message) {
 			textMessage.setNewText(Message);
 		}

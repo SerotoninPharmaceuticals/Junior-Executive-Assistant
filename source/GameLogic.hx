@@ -39,6 +39,7 @@ class GameLogic {
 		}
 		switch (state.storyLevel) {
 		case 0:
+			trace("level 0 begin");
 			state.documentA = "printed";
 			addTask("story-0", 6, function(){
 				testBlock(8 + Std.random(3), function() {
@@ -49,6 +50,7 @@ class GameLogic {
 				});
 			});
 		case 1:
+			trace("level 1 begin");
 			addTask("story-1", 4, function(){
 				testBlock(4 + Std.random(2), function() {
 					
@@ -67,13 +69,16 @@ class GameLogic {
 				});
 			});
 		case 2:
+			trace("level 2 begin");
 			state.dayEnded = true;
 			state.lightState = "red";
 		case 3:
+			trace("level 3 begin");
 			state.documentB = "printed";
 			state.dayEnded = true;
 			state.lightState = "red";
 		case 4:
+			trace("level 4 begin");
 			state.documentA = "modified";
 			addTask("story-4", 4, function(){
 				testBlock(8 + Std.random(3), function() {
@@ -84,6 +89,7 @@ class GameLogic {
 				});
 			});
 		case 5:
+			trace("level 5 begin");
 			addTask("story-5", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 				}, function() {
@@ -92,20 +98,52 @@ class GameLogic {
 				});
 			});
 		case 6:
-			state.rightButtonAddtion = "borken";
-			state.answerMode = "single";
+			trace("level 6 begin");
+			state.rightButtonAddtion = "broken";
 			addTask("story-6", 4, function(){
 				testBlock(8 + Std.random(3), function() {
 					
 				}, function() {
-					trace("Day 6 ended");
 					state.dayEnded = true;
 					state.lightState = "red";
 				});
 			});
-		}
 		case 7:
+			trace("level 7 begin");
+			state.answerMode = "single";
 			state.documentC = "printed";
+			addTask("story-7", 4, function(){
+				testBlock(8 + Std.random(3), function() {
+					
+				}, function() {
+					state.dayEnded = true;
+					state.lightState = "red";
+					if (state.lastKpi > 2 && state.kpi > 2) {
+						state.storyLevel = 8;
+					}
+				});
+			});
+		case 8:
+			trace("level 8 begin");
+			state.leftButtonAddtion = "broken";
+			addTask("story-8", 6, function(){
+				testBlock(8 + Std.random(3), function() {
+					
+				}, function() {
+					state.dayEnded = true;
+					state.lightState = "red";
+				});
+			});
+			state.storyLevel = 9;
+		case 9:
+			trace("level 9 begin");
+			state.screenAddtion = "broken";
+			state.dayEnded = true;
+			state.storyLevel = 10;
+		case 10:
+			trace("level 10 begin");
+			state.leftButtonAddtion = "fake";
+		}
 	}
 
 	public function makeSavable():GameState {
@@ -114,6 +152,7 @@ class GameLogic {
 			beginDay: new Date(2099, 9, 18, 12, 22, 33),
 			lightState: "off",
 			kpi: state.kpi,
+			lastKpi: state.kpi,
 			storyLevel: state.storyLevel,
 
 			dayEnded: false,
@@ -127,6 +166,8 @@ class GameLogic {
 
 			leftButtonAddtion: state.leftButtonAddtion,
 			rightButtonAddtion: state.rightButtonAddtion,
+			screenAddtion: state.screenAddtion,
+
 			answerMode: state.answerMode
 		};
 	}
@@ -178,13 +219,13 @@ class GameLogic {
 	}
 
 	private function win():Void {
-		state.kpi += 1;
+		state.kpi += 0.8;
 
 		trace("WIN");
 	}
 
 	private function lose():Void {
-		state.kpi -= 1;
+		state.kpi -= 1.2;
 
 		trace("LOSE");
 		if (state.kpi <0) {
@@ -196,10 +237,10 @@ class GameLogic {
 	public function machine(Input: String):Void {
 		lastMachineMessage = Input;
 		if(isTesting) {
-			if(state.leftButtonAddtion == "borken" && Input == "left-button"){
+			if(state.leftButtonAddtion == "broken" && Input == "left-button"){
 				return;
 			}
-			if(state.rightButtonAddtion == "borken" && Input == "right-button"){
+			if(state.rightButtonAddtion == "broken" && Input == "right-button"){
 				return;
 			}
 			if ((testLeftIsRight && Input == "left-button") || (!testLeftIsRight && Input == "right-button") || (!testLeftIsRight && Input == "right-button-from-left")) {
@@ -226,6 +267,7 @@ class GameLogic {
 
 	public function newDay():Void {
 		state.day ++;
+		state.kpi = 0;
 		beginGame();
 	}
 
@@ -273,26 +315,28 @@ class GameLogic {
 
 	static public function brandNewDay():GameState {
 		return {
-			day: 10 - 1,
+			day: 1 - 1,
 			beginDay: new Date(2099, 9, 18, 12, 22, 33),
 			lightState: "off",
-			kpi: 10,
-			storyLevel: 5,
+			kpi: 0,
+			lastKpi: 10,
+			storyLevel: 0,
 
 			dayEnded: false,
 
 			message: "Welcome, homie",
 			motto: mottos[Std.random(mottos.length)],
 
-			documentA: "unavailable",
-			documentB: "unavailable",
-			documentC: "unavailable",
+			documentA: "unavaiable",
+			documentB: "unavaiable",
+			documentC: "unavaiable",
 
 
 			leftButtonAddtion: "none",
 			rightButtonAddtion: "none",
+			screenAddtion: "none",
 
-			answerMode: "both"
+			answerMode: "single"
 		};
 	}
 

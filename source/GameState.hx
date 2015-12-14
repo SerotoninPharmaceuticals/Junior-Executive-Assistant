@@ -5,7 +5,8 @@ typedef GameState = {
 	var beginDay: Date;
 	var lightState: String;
 
-	var kpi: Int;
+	var kpi: Float;
+	var lastKpi: Float;
 
 	var storyLevel: Int;
 
@@ -20,6 +21,7 @@ typedef GameState = {
 
 	var leftButtonAddtion: String;
 	var rightButtonAddtion: String;
+	var screenAddtion: String;
 
 	var answerMode: String;
 }

@@ -48,8 +48,8 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		// if(ConsistData.getData().data.save == null) {
-		if(true) {
+		if(ConsistData.getData().data.save == null) {
+		// if(true) {
 			ConsistData.getData().data.save = GameLogic.brandNewDay();
 		}
 		logic = new GameLogic(Reflect.copy( ConsistData.getData().data.save));
@@ -57,13 +57,17 @@ class PlayState extends FlxState
 		wallDocuments = Reflect.copy(logic.state);
 		logic.newDay();
 
-		if (logic.state.leftButtonAddtion == "borken") {
+		if (logic.state.leftButtonAddtion == "broken") {
 			leftButtonUpImage = "assets/images/button-base-left.png";
 			leftButtonDownImage = "assets/images/button-base-left.png";
 		}
-		if (logic.state.rightButtonAddtion == "borken") {
+		if (logic.state.rightButtonAddtion == "broken") {
 			rightButtonUpImage = "assets/images/button-base-right.png";
 			rightButtonDownImage = "assets/images/button-base-right.png";
+		}
+		if (logic.state.leftButtonAddtion == "fake") {
+			leftButtonUpImage = "assets/images/button-fake.png";
+			leftButtonDownImage = "assets/images/button-fake.png";
 		}
 
 
@@ -71,11 +75,19 @@ class PlayState extends FlxState
 		background.loadGraphic("assets/images/background.png");
 		add(background);
 
-		console = new MiniConsole();
-		add(console);
-		console.x = (1080 / 2) - (console.width / 2);
-		console.y = 11;
-		console.open();
+		if(logic.state.screenAddtion != "broken") {
+			console = new MiniConsole();
+			add(console);
+			console.x = (1080 / 2) - (console.width / 2);
+			console.y = 11;
+			console.open();
+		} else {
+			var brokenConsole = new FlxSprite();
+			brokenConsole.loadGraphic("assets/images/screen-broken.png");
+			add(brokenConsole);
+			brokenConsole.x = (1080 / 2) - (brokenConsole.width / 2);
+			brokenConsole.y = 11;
+		}
 
 		lightHalo = new FlxSprite();
 		lightHalo.loadGraphic("assets/images/light-halo-green.png");
@@ -215,7 +227,7 @@ class PlayState extends FlxState
 		} else {
 			leftPressTimer = Timer.delay(function(){
 				logic.machine("right-button-from-left");
-			}, 1000);
+			}, 700);
 		}
 	}
 	public function leftButtonEnd():Void {
@@ -248,12 +260,14 @@ class PlayState extends FlxState
 		}
 
 		var beginDay = logic.state.beginDay;
-		console.updateText(
-				new Date(beginDay.getFullYear(), beginDay.getMonth(), beginDay.getDate() + logic.state.day, 12, 33, 23),
-				logic.state.message,
-				logic.state.motto,
-				logic.state.kpi
-			);
+		if(logic.state.screenAddtion != "broken") {
+			console.updateText(
+					new Date(beginDay.getFullYear(), beginDay.getMonth(), beginDay.getDate() + logic.state.day, 12, 33, 23),
+					logic.state.message,
+					logic.state.motto,
+					logic.state.kpi
+				);
+		}
 
 		// Process the light and halo
 		if(preState.lightState != logic.state.lightState) {
@@ -276,7 +290,9 @@ class PlayState extends FlxState
 		// Console and save game
 		if(logic.state.dayEnded && !preState.dayEnded) {
 			preState.dayEnded = true;
-			console.close();
+			if(logic.state.screenAddtion != "broken") {
+				console.close();
+			}
 			ConsistData.getData().data.save = logic.makeSavable();
 		}
 
