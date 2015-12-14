@@ -151,17 +151,17 @@ class PlayState extends FlxState
 		var textKpi = new FlxText();
 		textKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textKpi.x = 890;
-		textKpi.y = 85;
+		textKpi.y = 90;
 		receiptGroup.add(textKpi);
 		var textIncome = new FlxText();
 		textIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textIncome.x = 890;
-		textIncome.y = 95;
+		textIncome.y = 103;
 		receiptGroup.add(textIncome);
 		var textBalance = new FlxText();
 		textBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textBalance.x = 890;
-		textBalance.y = 105;
+		textBalance.y = 116;
 		receiptGroup.add(textBalance);
 		receiptGroup.add(receipt);
 
@@ -233,7 +233,7 @@ class PlayState extends FlxState
 				return;
 				}
 			FlxG.sound.play("assets/sounds/paper-flip.wav", 1);
-			viewDocument("assets/images/document-1.png", function(){});
+			viewDocument("assets/images/document-1-modified.png", function(){});
 		};
 
 		// 
