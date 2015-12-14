@@ -17,7 +17,7 @@ class MiniConsole extends FlxSpriteGroup {
 		super();
 
 		// Status bar
-		textDate = new FlxText(0, 2, 175, "13 Dec", 14, true);
+		textDate = new FlxText(-1, 2, 175, "13 Dec", 14, true);
 		textDate.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textDate);
 
