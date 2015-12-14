@@ -13,7 +13,7 @@ class Main extends Sprite
 	{	
 		Lib.current.addChild(new Main());
 		FlxG.mouse.useSystemCursor = true;
-		FlxG.autoPause = false;
+		FlxG.autoPause = true;
 	}
 	
 	public function new() 
