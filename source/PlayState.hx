@@ -68,6 +68,8 @@ class PlayState extends FlxState
 		wallDocuments = Reflect.copy(logic.state);
 		logic.newDay();
 
+		// trace(logic.state);
+
 		if (logic.state.leftButtonAddtion == "broken") {
 			leftButtonUpImage = "assets/images/button-base-left.png";
 			leftButtonDownImage = "assets/images/button-base-left.png";
@@ -87,6 +89,11 @@ class PlayState extends FlxState
 		add(background);
 
 		if(logic.state.screenAddtion != "broken") {
+			var goodConsole = new FlxSprite();
+			goodConsole.loadGraphic("assets/images/screen.png");
+			add(goodConsole);
+			goodConsole.x = (1080 / 2) - (goodConsole.width / 2);
+			goodConsole.y = 11;
 			console = new MiniConsole();
 			add(console);
 			console.x = (1080 / 2) - (console.width / 2);
@@ -146,7 +153,7 @@ class PlayState extends FlxState
 		var textDate = new FlxText();
 		textDate.setFormat("assets/fonts/GOTHIC.TTF", 7, 0xff000000);
 		textDate.x = 827;
-		textDate.y = 51;
+		textDate.y = 48;
 		receiptGroup.add(textDate);
 		var textKpi = new FlxText();
 		textKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
@@ -303,7 +310,9 @@ class PlayState extends FlxState
 		}
 		leftPressing = true;
 		buttonLeft.loadGraphic(leftButtonDownImage);
-		FlxG.sound.play("assets/sounds/button-down.wav", 1);
+		if(logic.state.leftButtonAddtion != "broken") {
+			FlxG.sound.play("assets/sounds/button-down.wav", 1);
+		}
 		if(logic.state.answerMode == "both") {
 			logic.machine("left-button");
 		} else {
@@ -317,7 +326,9 @@ class PlayState extends FlxState
 			return;
 		}
 		leftPressing = false;
-		FlxG.sound.play("assets/sounds/button-up.wav", 1);
+		if(logic.state.leftButtonAddtion != "broken") {
+			FlxG.sound.play("assets/sounds/button-up.wav", 1);
+		}
 		buttonLeft.loadGraphic(leftButtonUpImage);
 		if(leftPressTimer != null) {
 			logic.machine("left-button");
@@ -332,7 +343,9 @@ class PlayState extends FlxState
 		}
 		rightPressing = true;
 		logic.machine("right-button");
-		FlxG.sound.play("assets/sounds/button-down.wav", 1);
+		if(logic.state.rightButtonAddtion != "broken") {
+			FlxG.sound.play("assets/sounds/button-down.wav", 1);
+		}
 		buttonRight.loadGraphic(rightButtonDownImage);
 	}
 	public function rightButtonEnd():Void {
@@ -340,7 +353,9 @@ class PlayState extends FlxState
 			return;
 		}
 		rightPressing = false;
-		FlxG.sound.play("assets/sounds/button-up.wav", 1);
+		if(logic.state.rightButtonAddtion != "broken") {
+			FlxG.sound.play("assets/sounds/button-up.wav", 1);
+		}
 		buttonRight.loadGraphic(rightButtonUpImage);
 	}
 

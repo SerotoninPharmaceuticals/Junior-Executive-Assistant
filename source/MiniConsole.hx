@@ -33,7 +33,7 @@ class MiniConsole extends FlxSpriteGroup {
 		textMessage.alpha = 0;
 
 		// Motto field
-		textMotto = new MarqueenText(0, 42, 17, "How's the weather?", 14, true);
+		textMotto = new MarqueenText(0, 46, 17, "How's the weather?", 14, true);
 		textMotto.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textMotto);
 		textMotto.drive();
