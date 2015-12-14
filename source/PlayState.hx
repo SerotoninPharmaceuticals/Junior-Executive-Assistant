@@ -91,7 +91,6 @@ class PlayState extends FlxState
 			add(console);
 			console.x = (1080 / 2) - (console.width / 2);
 			console.y = 11;
-			console.open();
 		} else {
 			var brokenConsole = new FlxSprite();
 			brokenConsole.loadGraphic("assets/images/screen-broken.png");
@@ -146,22 +145,35 @@ class PlayState extends FlxState
 		receipt.y = 10;
 		var textDate = new FlxText();
 		textDate.setFormat("assets/fonts/GOTHIC.TTF", 8, 0xff000000);
-		textDate.text = "hahahdasdasdas";
 		textDate.x = 827;
 		textDate.y = 50;
 		receiptGroup.add(textDate);
-		var txtKpi = new FlxText();
-		txtKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
-		receiptGroup.add(txtKpi);
-		var txtIncome = new FlxText();
-		txtIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
-		receiptGroup.add(txtIncome);
-		var txtBalance = new FlxText();
-		txtBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
-		receiptGroup.add(txtBalance);
+		var textKpi = new FlxText();
+		textKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		textKpi.x = 890;
+		textKpi.y = 85;
+		receiptGroup.add(textKpi);
+		var textIncome = new FlxText();
+		textIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		textIncome.x = 890;
+		textIncome.y = 95;
+		receiptGroup.add(textIncome);
+		var textBalance = new FlxText();
+		textBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
+		textBalance.x = 890;
+		textBalance.y = 105;
+		receiptGroup.add(textBalance);
 		receiptGroup.add(receipt);
 
 		receiptPrinting.onDown.callback = function(){
+			var beginDay = logic.state.beginDay;
+			textDate.text = MiniConsole.getStrDate(new Date(beginDay.getFullYear(), beginDay.getMonth(), beginDay.getDate() + logic.state.day, 12, 33, 23));
+
+			textKpi.text = MiniConsole.floatToStr(logic.state.kpi);
+
+			textIncome.text = MiniConsole.floatToStr(ConsistData.getData().data.save.balance - preState.balance);
+			textBalance.text = MiniConsole.floatToStr(ConsistData.getData().data.save.balance);
+
 			remove(receiptPrinting);
 			receiptGroup.sort(FlxSort.byY, FlxSort.ASCENDING);
 			add(receiptGroup);
@@ -278,6 +290,7 @@ class PlayState extends FlxState
 		}
 		logic.beginWorkCallback = function(){
 			tickSound = FlxG.sound.play("assets/sounds/clock-tick.wav", 1, true);
+			console.open();
 		}
 
 	}
@@ -376,12 +389,12 @@ class PlayState extends FlxState
 				console.close();
 			}
 			ConsistData.getData().data.save = logic.makeSavable();
-			FlxG.sound.play("assets/sounds/day-off.wav", 1);
 			if(tickSound != null) {
 				tickSound.pause();
-			}
-			if(logic.state.storyLevel != 10) {
-				FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+				FlxG.sound.play("assets/sounds/day-off.wav", 1);
+				if(logic.state.storyLevel != 10) {
+					FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+				}
 			}
 		}
 

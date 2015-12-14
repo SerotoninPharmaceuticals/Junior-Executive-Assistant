@@ -376,7 +376,7 @@ class GameLogic {
 			lightState: "off",
 			kpi: 0,
 			lastKpi: 10,
-			storyLevel: 2,
+			storyLevel: 0,
 			balance: -100,
 
 			dayEnded: false,
@@ -393,7 +393,7 @@ class GameLogic {
 			rightButtonAddtion: "none",
 			screenAddtion: "none",
 
-			answerMode: "single"
+			answerMode: "both"
 		};
 	}
 

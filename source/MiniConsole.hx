@@ -30,6 +30,7 @@ class MiniConsole extends FlxSpriteGroup {
 		textMessage.setFormat("assets/fonts/led_display-7.ttf", 30, 0x66ffaa);
 		add(textMessage);
 		textMessage.drive();
+		textMessage.alpha = 0;
 
 		// Motto field
 		textMotto = new MarqueenText(0, 42, 17, "How's the weather?", 14, true);
@@ -52,19 +53,27 @@ class MiniConsole extends FlxSpriteGroup {
 	}
 
 	public function updateText(NewDate: Date, Message: String, Motto: String, Kpi: Float):Void {
-		textDate.text = Std.string(NewDate.getDate()) + " " + monthDict[NewDate.getMonth()];
-		var kpiStr = Std.string(Kpi);
-		if(kpiStr.indexOf('.')  != -1) {
-			textKpi.text = "KPI:" + kpiStr.substr(0, kpiStr.indexOf('.') + 2);
-		} else {
-			textKpi.text = "KPI:" + kpiStr + ".0";
-		}
+		textDate.text = getStrDate(NewDate);
+		textKpi.text = "KPI:" + floatToStr(Kpi);
 		if(textMessage.fullText != Message) {
 			textMessage.setNewText(Message);
 		}
 		if(textMotto.fullText != Motto) {
 			textMotto.setNewText(Motto);
 		}
+	}
+
+	public static function floatToStr(Number: Float): String {
+		var str = Std.string(Number);
+		if(str.indexOf('.')  != -1) {
+			return str.substr(0, str.indexOf('.') + 2);
+		} else {
+			return str + ".0";
+		}
+	}
+
+	public static function getStrDate(NewDate: Date): String {
+		return Std.string(NewDate.getDate()) + " " + monthDict[NewDate.getMonth() - 1];
 	}
 
 	static private var monthDict = [
