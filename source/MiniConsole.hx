@@ -8,38 +8,73 @@ import MarqueenText;
 
 class MiniConsole extends FlxSpriteGroup {
 
-	private var textStatusBar: FlxTypeText;
-	private var textMessage: MarqueenText;
-	private var textMotto: MarqueenText;
+	var textDate: FlxText;
+	var textKpi: FlxText;
+	var textMessage: MarqueenText;
+	var textMotto: MarqueenText;
 
 	function new() {
 		super();
 
 		// Status bar
-		textStatusBar = new FlxTypeText(0, 0, 180, "8:00 AM 8 Jan %d", 8, true);
-		add(textStatusBar);
+		textDate = new FlxText(0, 2, 175, "13 Dec", 14, true);
+		textDate.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
+		add(textDate);
+
+		textKpi = new FlxText(0, 2, 175, "KPI 12/20", 14, true);
+		textKpi.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa, "right");
+		add(textKpi);
 
 		// Message field
-		textMessage = new MarqueenText(0, 10, 180, "Oh hi mark", 16, true);
+		textMessage = new MarqueenText(0, 16, 8, "Oh hi mark", 30, true);
+		textMessage.setFormat("assets/fonts/led_display-7.ttf", 30, 0x66ffaa);
 		add(textMessage);
 		textMessage.drive();
 
 		// Motto field
-		textMotto = new MarqueenText(0, 18, 180, "How's the weather?", 8, true);
+		textMotto = new MarqueenText(0, 42, 17, "How's the weather?", 14, true);
+		textMotto.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textMotto);
 		textMotto.drive();
 	}
 
 	public function open(): Void {
-		textStatusBar.start(null, false, false, null, null, null, null);
+		// textDate.alpha = 1;
+		// textKpi.alpha = 1;
+		textMessage.alpha = 1;
+		// textMotto.alpha = 1;
 	}
 	public function close(): Void {
-		textStatusBar.erase();
-		textStatusBar.skip();
+		// textDate.alpha = 0;
+		// textKpi.alpha = 0;
+		textMessage.alpha = 0;
+		// textMotto.alpha = 0;
 	}
 
-	override public function setSize(Width:Float, Height:Float):Void {
-		super.setSize(Width, Height);
-		textStatusBar.width = Width;
+	public function updateText(NewDate: Date, Message: String, Motto: String, Kpi: Int):Void {
+		textDate.text = Std.string(NewDate.getDate()) + " " + monthDict[NewDate.getMonth()];
+		textKpi.text = "KPI: " + Std.string(Kpi);
+		if(textMessage.fullText != Message) {
+			textMessage.setNewText(Message);
+		}
+		if(textMotto.fullText != Motto) {
+			textMotto.setNewText(Motto);
+		}
 	}
+
+	static private var monthDict = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec"
+	];
+
 }

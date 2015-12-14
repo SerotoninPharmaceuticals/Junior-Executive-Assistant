@@ -1,0 +1,97 @@
+package;
+
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.text.FlxText;
+import flixel.ui.FlxButton;
+import flixel.util.FlxMath;
+import ConsistData;
+import MiniConsole;
+import flash.display.BlendMode;
+import GameLogic;
+import flixel.addons.ui.FlxUITypedButton;
+
+class PlayState extends FlxState
+{
+	private var buttonLeft: FlxUITypedButton;
+	private var buttonRight: FlxUITypedButton;
+
+	private var light: FlxSprite;
+	private var lightHalo: FlxSprite;
+
+	private var console: MiniConsole;
+
+	private var logic: GameLogic;
+
+	override public function create():Void
+	{
+		super.create();
+		var background = new FlxSprite();
+		background.loadGraphic("assets/images/background.png");
+		add(background);
+
+		console = new MiniConsole();
+		add(console);
+		console.x = (1080 / 2) - (console.width / 2);
+		console.y = 10;
+		console.open();
+
+		lightHalo = new FlxSprite();
+		lightHalo.loadGraphic("assets/images/light-halo-green.png");
+		add(lightHalo);
+		lightHalo.x = 433;
+		lightHalo.y = 34;
+		lightHalo.blend = BlendMode.OVERLAY;
+		lightHalo.alpha = 0.7;
+
+		light = new FlxSprite();
+		light.loadGraphic("assets/images/light-green.png");
+		add(light);
+		light.x = 450;
+		light.y = 89;
+
+		buttonLeft = new FlxUITypedButton(0, 0, leftButtonPressed);
+		// buttonLeft.loadGraphic("assets/images/button.png");
+		buttonLeft.assembleButtonFrames(
+			(new FlxSprite(0,0,"assets/images/button.png")).pixels,
+			(new FlxSprite(0,0,"assets/images/button.png")).pixels,
+			(new FlxSprite(0,0,"assets/images/button-pressed.png")).pixels
+			);
+		add(buttonLeft);
+		buttonLeft.x = 488;
+		buttonLeft.y = 84;
+
+		buttonRight = new FlxUITypedButton(0, 0, rightButtonPressed);
+		// buttonRight.loadGraphic("assets/images/button.png");
+		buttonLeft.assembleButtonFrames(
+			(new FlxSprite(0,0,"assets/images/button.png")).pixels,
+			(new FlxSprite(0,0,"assets/images/button.png")).pixels,
+			(new FlxSprite(0,0,"assets/images/button-pressed.png")).pixels
+			);
+		add(buttonRight);
+		buttonRight.x = 568;
+		buttonRight.y = 84;
+
+
+		if(ConsistData.getData().data.save == null) {
+			ConsistData.getData().data.save = GameLogic.brandNewDay();
+		}
+		logic = new GameLogic(ConsistData.getData().data.save);
+		logic.newDay();
+	}
+
+	override public function update():Void
+	{
+		super.update();
+		logic.update(FlxG.elapsed);
+	}
+
+	public function leftButtonPressed():Void {
+		logic.machine("left-button");
+	}
+	public function rightButtonPressed():Void {
+		logic.machine("right-button");
+	}
+
+}
