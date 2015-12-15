@@ -35,20 +35,15 @@ class GameLogic {
 			state.storyLevel = 4;
 		}
 
-		if (state.storyLevel == 7) {
-			state.message = level4Pool[Std.random(level4Pool.length)];
-		}
 
-		if(state.storyLevel == 6) {
-			state.storyLevel = 7;
-			state.message = "You assignment has been updated, check the new printed document.";
-		}
 		if(state.storyLevel == 6) {
 			state.message = "Please do precisely as what your employee manual says. There will be no more warning.";
 		}
+		if(state.storyLevel == 5) {
+			state.message = "Do never press the right button!";
+		}
 		if(state.storyLevel == 4 && state.lastKpi != 0) {
 			state.storyLevel = 5;
-			state.message = "Do never press the right button!";
 		}
 
 		if(state.day <= 4) {
@@ -139,6 +134,8 @@ class GameLogic {
 				testBlock(8 + Std.random(3), function() {
 					
 				}, function() {
+					state.storyLevel = 7;
+					state.message = "You assignment has been updated, check the new printed document.";
 					state.dayEnded = true;
 					state.lightState = "red";
 				});
@@ -154,6 +151,7 @@ class GameLogic {
 				}, function() {
 					state.dayEnded = true;
 					state.lightState = "red";
+					state.message = level4Pool[Std.random(level4Pool.length)];
 					if (state.reached2 && state.kpi > 2) {
 						state.storyLevel = 8;
 					}
@@ -378,32 +376,33 @@ class GameLogic {
 	static public function brandNewDay():GameState {
 
 		// The ending
-		// return {
-		// 	day: 21 - 1,
-		// 	beginDay: new Date(2099, 9, 18, 12, 22, 33),
-		// 	lightState: "off",
-		// 	kpi: 0,
-		// 	lastKpi: 10,
-		// 	storyLevel: 10,
-		// 	balance: -100,
-		//  reached2: true,
 
-		// 	dayEnded: false,
+		return {
+			day: 12 - 1,
+			beginDay: new Date(2099, 9, 18, 12, 22, 33),
+			lightState: "off",
+			kpi: 0,
+			lastKpi: 10,
+			storyLevel: 5,
+			balance: -100,
+		 reached2: true,
 
-		// 	message: "Welcome, homie",
-		// 	motto: mottos[Std.random(mottos.length)],
+			dayEnded: false,
 
-		// 	documentA: "modified",
-		// 	documentB: "printed",
-		// 	documentC: "printed",
+			message: "Welcome, homie",
+			motto: mottos[Std.random(mottos.length)],
+
+			documentA: "modified",
+			documentB: "printed",
+			documentC: "printed",
 
 
-		// 	leftButtonAddtion: "broken",
-		// 	rightButtonAddtion: "broken",
-		// 	screenAddtion: "broken",
+			leftButtonAddtion: "none",
+			rightButtonAddtion: "none",
+			screenAddtion: "none",
 
-		// 	answerMode: "single"
-		// };
+			answerMode: "both"
+		};
 
 		// Clean one
 		return {
