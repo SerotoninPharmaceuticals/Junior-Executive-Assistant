@@ -163,22 +163,22 @@ class PlayState extends FlxState
 		var textDate = new FlxText();
 		textDate.setFormat("assets/fonts/GOTHIC.TTF", 7, 0xff000000);
 		textDate.x = 827;
-		textDate.y = 48;
+		textDate.y = 47;
 		receiptGroup.add(textDate);
 		var textKpi = new FlxText();
 		textKpi.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textKpi.x = 890;
-		textKpi.y = 91;
+		textKpi.y = 90;
 		receiptGroup.add(textKpi);
 		var textIncome = new FlxText();
 		textIncome.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textIncome.x = 890;
-		textIncome.y = 103;
+		textIncome.y = 102;
 		receiptGroup.add(textIncome);
 		var textBalance = new FlxText();
 		textBalance.setFormat("assets/fonts/GOTHIC.TTF", 8, 0x444444);
 		textBalance.x = 890;
-		textBalance.y = 115;
+		textBalance.y = 114;
 		receiptGroup.add(textBalance);
 		receiptGroup.add(receipt);
 
@@ -464,11 +464,13 @@ class PlayState extends FlxState
 			ConsistData.getData().data.save = logic.makeSavable();
 			if(tickSound != null) {
 				tickSound.pause();
-				FlxG.sound.play("assets/sounds/day-off.wav", 1);
-				if(preState.storyLevel != 10) {
-					haxe.Timer.delay(function() {
-						FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
-					}, 4000);
+				if(logic.state.storyLevel != 1 && logic.state.storyLevel != 5) {
+					FlxG.sound.play("assets/sounds/day-off.wav", 1);
+					if(preState.storyLevel != 10) {
+						haxe.Timer.delay(function() {
+							FlxTween.tween(receiptPrinting, {y:-12 }, 0.8);
+						}, 4000);
+					}
 				}
 			}
 		}

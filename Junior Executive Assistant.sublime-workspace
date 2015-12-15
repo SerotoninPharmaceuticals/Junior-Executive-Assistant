@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"document",
+				"documentPrinting	var"
+			],
+			[
+				"rece",
+				"receiptPrinting	var"
+			],
+			[
+				"add",
+				"leftButtonAddtion"
+			],
+			[
+				"fake",
+				"fakeButton"
+			],
+			[
+				"cursor",
+				"MouseCursor	flash.ui"
+			],
+			[
+				"small",
+				"smallDocumentC	var"
+			],
+			[
+				"kp",
+				"kpi"
+			],
+			[
+				"on",
+				"onDown"
+			],
+			[
+				"button",
+				"buttonLeft	var"
+			],
+			[
+				"receip",
+				"receiptGroup	var"
+			],
+			[
+				"flxtyped",
+				"FlxTypedGroup	flixel.group"
+			],
+			[
+				"bu",
+				"buttonLeft	var"
+			],
+			[
+				"beginw",
+				"beginWorkCallback	var"
+			],
+			[
+				"leve",
+				"level4Day9	var"
+			],
+			[
 				"sto",
 				"storyLevel"
 			],
@@ -28,10 +84,6 @@
 				"documentA"
 			],
 			[
-				"small",
-				"SmallImage	var"
-			],
-			[
 				"doprint",
 				"documentPrinting"
 			],
@@ -50,10 +102,6 @@
 			[
 				"lar",
 				"LargeImage"
-			],
-			[
-				"document",
-				"documentLarge	var"
 			],
 			[
 				"mask",
@@ -134,10 +182,6 @@
 			[
 				"Stri",
 				"String	class"
-			],
-			[
-				"button",
-				"buttonRight	var"
 			],
 			[
 				"st",
@@ -470,68 +514,16 @@
 			[
 				"lab",
 				"label"
-			],
-			[
-				"for",
-				"for	for (…) {…}"
-			],
-			[
-				"ty",
-				"typeof"
-			],
-			[
-				"log",
-				"log_labels"
-			],
-			[
-				"mo",
-				"moveTo"
-			],
-			[
-				"lo",
-				"log_labels"
-			],
-			[
-				"role",
-				"role"
-			],
-			[
-				"ta",
-				"talking"
-			],
-			[
-				"le",
-				"length"
-			],
-			[
-				"cur",
-				"current"
-			],
-			[
-				"cue",
-				"current_block"
-			],
-			[
-				"swi",
-				"switchState"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Project.xml",
-			"settings":
-			{
-				"buffer_size": 1453,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "source/PlayState.hx",
 			"settings":
 			{
-				"buffer_size": 13927,
+				"buffer_size": 20642,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,7 +531,7 @@
 			"file": "source/Main.hx",
 			"settings":
 			{
-				"buffer_size": 692,
+				"buffer_size": 708,
 				"line_ending": "Windows"
 			}
 		},
@@ -547,7 +539,7 @@
 			"file": "source/GameLogic.hx",
 			"settings":
 			{
-				"buffer_size": 9224,
+				"buffer_size": 12004,
 				"line_ending": "Windows"
 			}
 		},
@@ -555,7 +547,7 @@
 			"file": "source/GameState.hx",
 			"settings":
 			{
-				"buffer_size": 414,
+				"buffer_size": 456,
 				"line_ending": "Windows"
 			}
 		},
@@ -563,7 +555,7 @@
 			"file": "source/MiniConsole.hx",
 			"settings":
 			{
-				"buffer_size": 2023,
+				"buffer_size": 2280,
 				"line_ending": "Windows"
 			}
 		},
@@ -571,7 +563,7 @@
 			"file": "source/MarqueenText.hx",
 			"settings":
 			{
-				"buffer_size": 1650,
+				"buffer_size": 1682,
 				"line_ending": "Windows"
 			}
 		},
@@ -580,13 +572,6 @@
 			"settings":
 			{
 				"buffer_size": 269,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"settings":
-			{
-				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
 		}
@@ -607,12 +592,16 @@
 				"Haxe: Choose Build Target"
 			],
 			[
-				"targe",
-				"Haxe: Choose Build Target"
-			],
-			[
 				"",
 				"Build: Cancel"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"targe",
+				"Haxe: Choose Build Target"
 			],
 			[
 				"haxebuild",
@@ -645,10 +634,6 @@
 			[
 				"remove",
 				"Package Control: Remove Package"
-			],
-			[
-				"html",
-				"Snippet: html"
 			],
 			[
 				"remo",
@@ -689,7 +674,6 @@
 	"expanded_folders":
 	[
 		"/E/Develop/Haxe/Junior Executive Assistant",
-		"/E/Develop/Haxe/Junior Executive Assistant/source",
 		"/E/Develop/Haxe/Junior Executive Assistant/source/unused",
 		"/D/HaxeToolkit/haxe/lib/flixel/3,3,11",
 		"/D/HaxeToolkit/haxe/lib/flixel/3,3,11/flixel",
@@ -700,6 +684,9 @@
 	],
 	"file_history":
 	[
+		"/E/Develop/Haxe/Junior Executive Assistant/embed.html",
+		"/E/Develop/Haxe/Junior Executive Assistant/source/embed.html",
+		"/E/Develop/Haxe/Junior Executive Assistant/Project.xml",
 		"/E/Develop/Haxe/Junior Executive Assistant/source/Main.hx",
 		"/D/HaxeToolkit/haxe/lib/flixel/3,3,11/flixel/plugin/MouseEventManager.hx",
 		"/E/Develop/Haxe/Junior Executive Assistant/source/unused/playstateuibutton",
@@ -824,10 +811,7 @@
 		"/E/Develop/Sero/Cocos/cocos2d-js-v3.2/samples/js-tests/src/EffectsAdvancedTest/EffectsAdvancedTest.js",
 		"/E/Develop/Sero/Cocos/cocos2d-js-v3.2/README.md",
 		"/E/Develop/Sero/Cocos/quick-cocos2d-x-2.2.6-release/samples/physics/scripts/main.lua",
-		"/E/Develop/Sero/Cocos/quick-cocos2d-x-2.2.6-release/samples/physics/scripts/game.lua",
-		"/E/Develop/Sero/Cocos/cocos2d-js-v3.2/setup.py",
-		"/E/Develop/Sero/Hello/PiratePig/Source/piratepig/PiratePigGame.hx",
-		"/E/Develop/Sero/Hello/PiratePig/Source/piratepig/PiratePig.hx"
+		"/E/Develop/Sero/Cocos/quick-cocos2d-x-2.2.6-release/samples/physics/scripts/game.lua"
 	],
 	"find":
 	{
@@ -858,6 +842,93 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"updatehit",
+			"documentPrinting",
+			"isDocumentMode",
+			"mouse.curs",
+			"documentPrinting",
+			"preState =",
+			"preState",
+			"preState.storyLevel",
+			"dayended",
+			"documentPrinting",
+			"ground",
+			"grand",
+			"grand.",
+			" \";",
+			" \"",
+			"just",
+			".\",",
+			" \",",
+			" \"",
+			"copy",
+			"fullText",
+			"just",
+			"fakeButton",
+			"fake",
+			"pressed",
+			"small",
+			"ff000000",
+			"buttonLeft.onDown.callback",
+			"open",
+			"unavaiable",
+			"typedgrou",
+			"brokenConsole",
+			"screenAddtion",
+			"== 10",
+			"screenAddtion",
+			"screen",
+			"broken",
+			"screen-broken",
+			"mach",
+			"Machine",
+			"machine",
+			"red",
+			"Machine",
+			"machine",
+			"7, 0",
+			"6, ",
+			"typedgr",
+			"8, 0x",
+			"typedgrou",
+			"document-1-modified",
+			"document-1.png",
+			"document1-modified",
+			"typedgrou",
+			"answerMode",
+			"typedgr",
+			"ended",
+			"begin",
+			"open",
+			"827",
+			"textDate",
+			"\"KPI:\" + ",
+			"kpiStr",
+			"KPI",
+			"txt",
+			"txtKpi",
+			"beginDay",
+			"receipt",
+			"group",
+			"add",
+			"FlxTypedGroup",
+			"txtDate",
+			"receiptPrinting",
+			"delayed-end",
+			"0.3",
+			"receiptPrinting",
+			"buttonLeft",
+			"save",
+			"buttonLeft",
+			"true",
+			"printing",
+			"workingt",
+			"save",
+			"winCallback",
+			"smallDocumentAM",
+			"leftPressing",
+			"false",
+			"mottos",
 			"KPI: ",
 			"console",
 			"brokenConsole",
@@ -898,94 +969,7 @@
 			"Small documents",
 			"add",
 			"viewDocument",
-			"266",
-			"270",
-			"34",
-			"100",
-			"-82",
-			"smallDocumentA",
-			"documentPrinting",
-			"smallDocumentA",
-			"FlxSprite",
-			"printingEndCallback",
-			"documentB",
-			"2",
-			"1",
-			"documentA",
-			"rightButtonEnd",
-			"buttonRight",
-			"documentLarge",
-			"documentMask",
-			"();\n",
-			"1",
-			"documentPrintingShadow",
-			"endPainting",
-			"Delta",
-			"delay",
-			" 0",
-			"E:",
-			"0",
-			"preState.lightState",
-			"documentPrinting",
-			"buttonRight",
-			"var ",
-			"documentPrintingShadow",
-			"buttonRight",
-			"documentPrinting",
-			"light",
-			"Void",
-			"documentA",
-			"preLightState",
-			"condition",
-			"Void",
-			"args",
-			"name",
-			"story1Messed",
-			"FlxRandom.Float",
-			"story2messed",
-			"isStory1Messed",
-			"Void",
-			"args",
-			"name",
-			"Void",
-			"args",
-			"name",
-			"story1Messed",
-			"random",
-			"\"unavailable\"",
-			"time:",
-			"time",
-			"copy",
-			"Void",
-			"args",
-			"name",
-			"Void",
-			"name",
-			"args",
-			"green",
-			"random",
-			"this",
-			"timeline",
-			"green",
-			"askTask",
-			"haha",
-			"Namespace",
-			"\"",
-			"bubbleState",
-			"green",
-			"text",
-			"this.",
-			"Message",
-			".\"",
-			"matto",
-			"\n			",
-			"Matto",
-			"mattoo",
-			"\"\n",
-			"\n\n",
-			"176",
-			"textDate",
-			"textStatusBar"
+			"266"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -993,6 +977,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\",",
 			"broken",
 			"\",\n",
 			"\n",
@@ -1006,52 +991,22 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Project.xml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1453,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								552,
-								552
-							]
-						],
-						"settings":
-						{
-							"haxe-build-id": 0,
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "source/PlayState.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13927,
+						"buffer_size": 20642,
 						"regions":
 						{
 							"bookmarks":
@@ -1061,12 +1016,8 @@
 								"regions":
 								[
 									[
-										4297,
-										4312
-									],
-									[
-										10473,
-										10457
+										14474,
+										14474
 									]
 								],
 								"scope": "bookmarks"
@@ -1075,8 +1026,8 @@
 						"selection":
 						[
 							[
-								1315,
-								1315
+								6111,
+								6144
 							]
 						],
 						"settings":
@@ -1085,27 +1036,27 @@
 							"syntax": "Packages/Haxe/Haxe.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 527.0,
+						"translation.y": 3264.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "source/Main.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 692,
+						"buffer_size": 708,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								486,
+								486
 							]
 						],
 						"settings":
@@ -1118,16 +1069,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "source/GameLogic.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9224,
+						"buffer_size": 12004,
 						"regions":
 						{
 							"bookmarks":
@@ -1137,12 +1088,12 @@
 								"regions":
 								[
 									[
-										2014,
-										2020
+										2978,
+										2984
 									],
 									[
-										7117,
-										7120
+										8732,
+										8732
 									]
 								],
 								"scope": "bookmarks"
@@ -1151,8 +1102,8 @@
 						"selection":
 						[
 							[
-								6078,
-								6078
+								4518,
+								4492
 							]
 						],
 						"settings":
@@ -1161,27 +1112,27 @@
 							"syntax": "Packages/Haxe/Haxe.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4673.0,
+						"translation.y": 2959.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "source/GameState.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 414,
+						"buffer_size": 456,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								364,
-								377
+								158,
+								166
 							]
 						],
 						"settings":
@@ -1193,24 +1144,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "source/MiniConsole.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2023,
+						"buffer_size": 2280,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								456,
-								468
+								391,
+								391
 							]
 						],
 						"settings":
@@ -1222,24 +1173,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "source/MarqueenText.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1650,
+						"buffer_size": 1682,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								906,
-								906
+								119,
+								119
 							]
 						],
 						"settings":
@@ -1255,7 +1206,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "source/ConsistData.hx",
 					"semi_transient": false,
 					"settings":
@@ -1267,8 +1218,8 @@
 						"selection":
 						[
 							[
-								269,
-								269
+								8,
+								8
 							]
 						],
 						"settings":
@@ -1280,34 +1231,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
