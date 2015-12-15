@@ -412,7 +412,7 @@ class GameLogic {
 			lightState: "off",
 			kpi: 0,
 			lastKpi: 10,
-			storyLevel: 1,
+			storyLevel: 0,
 			balance: -500,
 			reached2: false,
 
