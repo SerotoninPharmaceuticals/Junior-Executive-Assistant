@@ -377,32 +377,32 @@ class GameLogic {
 
 		// The ending
 
-		return {
-			day: 12 - 1,
-			beginDay: new Date(2099, 9, 18, 12, 22, 33),
-			lightState: "off",
-			kpi: 0,
-			lastKpi: 10,
-			storyLevel: 5,
-			balance: -100,
-		 reached2: true,
+		// return {
+		// 	day: 12 - 1,
+		// 	beginDay: new Date(2099, 9, 18, 12, 22, 33),
+		// 	lightState: "off",
+		// 	kpi: 0,
+		// 	lastKpi: 10,
+		// 	storyLevel: 5,
+		// 	balance: -100,
+		//  reached2: true,
 
-			dayEnded: false,
+		// 	dayEnded: false,
 
-			message: "Welcome, homie",
-			motto: mottos[Std.random(mottos.length)],
+		// 	message: "Welcome, homie",
+		// 	motto: mottos[Std.random(mottos.length)],
 
-			documentA: "modified",
-			documentB: "printed",
-			documentC: "printed",
+		// 	documentA: "modified",
+		// 	documentB: "printed",
+		// 	documentC: "printed",
 
 
-			leftButtonAddtion: "none",
-			rightButtonAddtion: "none",
-			screenAddtion: "none",
+		// 	leftButtonAddtion: "none",
+		// 	rightButtonAddtion: "none",
+		// 	screenAddtion: "none",
 
-			answerMode: "both"
-		};
+		// 	answerMode: "both"
+		// };
 
 		// Clean one
 		return {
