@@ -43,8 +43,7 @@ class GameLogic {
 			state.storyLevel = 7;
 			state.message = "You assignment has been updated, check the new printed document.";
 		}
-		if(state.storyLevel == 5) {
-			state.storyLevel = 6;
+		if(state.storyLevel == 6) {
 			state.message = "Please do precisely as what your employee manual says. There will be no more warning.";
 		}
 		if(state.storyLevel == 4 && state.lastKpi != 0) {
@@ -320,6 +319,7 @@ class GameLogic {
 			if(state.storyLevel == 5) {
 				if(Input == "right-button") {
 					testBlock(0, function(){}, function(){});
+					state.storyLevel = 6;
 					state.dayEnded = true;
 					state.lightState = "red";
 				}
