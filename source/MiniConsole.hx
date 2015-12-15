@@ -17,11 +17,11 @@ class MiniConsole extends FlxSpriteGroup {
 		super();
 
 		// Status bar
-		textDate = new FlxText(0, 0, 175, "13 Dec", 14, true);
+		textDate = new FlxText(0, -1, 175, "13 Dec", 14, true);
 		textDate.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textDate);
 
-		textKpi = new FlxText(0, 0, 175, "KPI 12/20", 14, true);
+		textKpi = new FlxText(0, -1, 175, "KPI 12/20", 14, true);
 		textKpi.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa, "right");
 		add(textKpi);
 
