@@ -21,7 +21,7 @@ class MiniConsole extends FlxSpriteGroup {
 		textDate.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa);
 		add(textDate);
 
-		textKpi = new FlxText(0, 2, 175, "KPI 12/20", 14, true);
+		textKpi = new FlxText(-2, 2, 175, "KPI 12/20", 14, true);
 		textKpi.setFormat("assets/fonts/led_display-7.ttf", 14, 0x66ffaa, "right");
 		add(textKpi);
 
