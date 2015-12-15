@@ -385,7 +385,7 @@ class GameLogic {
 		// 	lastKpi: 10,
 		// 	storyLevel: 5,
 		// 	balance: -100,
-		//  reached2: true,
+		//  reached2: false,
 
 		// 	dayEnded: false,
 
@@ -394,7 +394,7 @@ class GameLogic {
 
 		// 	documentA: "modified",
 		// 	documentB: "printed",
-		// 	documentC: "printed",
+		// 	documentC: "none",
 
 
 		// 	leftButtonAddtion: "none",

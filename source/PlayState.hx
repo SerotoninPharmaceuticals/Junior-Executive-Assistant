@@ -464,7 +464,7 @@ class PlayState extends FlxState
 			ConsistData.getData().data.save = logic.makeSavable();
 			if(tickSound != null) {
 				tickSound.pause();
-				if(logic.state.storyLevel != 1 || (preState.storyLevel == 5 && logic.state.storyLevel == 5)) {
+				if(logic.state.storyLevel != 1 && !(preState.storyLevel == 5 && logic.state.storyLevel == 6)) {
 					FlxG.sound.play("assets/sounds/day-off.wav", 1);
 					if(preState.storyLevel != 10) {
 						haxe.Timer.delay(function() {
