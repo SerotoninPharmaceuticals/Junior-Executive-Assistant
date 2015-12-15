@@ -22,6 +22,10 @@ class GameLogic {
 	}
 	private function beginGame():Void {
 		trace("You're in day " + state.day);
+		if(state.storyLevel == 4 && state.lastKpi != 0) {
+			state.storyLevel = 5;
+		}
+
 		if(state.day == 4) {
 			state.storyLevel = 1;
 		}
@@ -42,10 +46,6 @@ class GameLogic {
 		if(state.storyLevel == 5) {
 			state.message = "Do never press the right button!";
 		}
-		if(state.storyLevel == 4 && state.lastKpi != 0) {
-			state.storyLevel = 5;
-		}
-
 		if(state.day <= 4) {
 			state.message = level1Pool[state.day - 1];
 		}
